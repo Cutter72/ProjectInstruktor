@@ -8,5 +8,7 @@
 </head>
 <body>
 <h1>Witaj!</h1>
+
+<a href="<c:url value="/category"/>">Do kategorii</a>
 </body>
 </html>
