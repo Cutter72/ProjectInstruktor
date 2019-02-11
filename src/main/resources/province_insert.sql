@@ -1,4 +1,4 @@
-INSERT INTO `instruktor`.`province` (`id`, `name`) VALUES
+INSERT INTO `instruktor`.`provinces` (`id`, `name`) VALUES
 ('2', 'DOLNOŚLĄSKIE'),
 ('4', 'KUJAWSKO-POMORSKIE'),
 ('6', 'LUBELSKIE'),
