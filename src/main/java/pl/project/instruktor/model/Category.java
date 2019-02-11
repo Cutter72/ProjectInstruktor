@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "category")
+@Table(name = "categories")
 public class Category {
 
     @Id
