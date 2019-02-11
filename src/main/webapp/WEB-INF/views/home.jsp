@@ -11,5 +11,6 @@
 <h1>Witaj!</h1>
 
 <a href="<c:url value="/category"/>">Do kategorii</a>
+<a href="<c:url value="/city"/>">Do miast</a>
 </body>
 </html>
