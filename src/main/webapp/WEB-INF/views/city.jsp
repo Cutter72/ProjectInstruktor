@@ -5,25 +5,26 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Kategorie</title>
+    <title>Miasta</title>
 </head>
 <body>
 <section>
-    <h1>Lista kategorii</h1>
+    <h1>Lista miast</h1>
     <table border="black">
-        <c:forEach items="${allCategories}" var="category">
+        <c:forEach items="${cityList}" var="city">
             <form>
                 <tr>
-                    <td>${category.name}</td>
-                    <td><a href="/category/edit/${category.id}"> Edytuj </a></td>
-                    <td><a href="/category/delete/${category.id}"> Usuń </a></td>
+                    <td>${city.name}</td>
+                    <td>${city.province.name}</td>
+                    <td><a href="/city/edit/${city.id}"> Edytuj </a></td>
+                    <td><a href="/city/delete/${city.id}"> Usuń </a></td>
                 </tr>
             </form>
         </c:forEach>
     </table>
 </section>
 <hr>
-<a href="<c:url value="/category/add"/>">Dodaj kategorię</a>
+<a href="<c:url value="/city/add"/>">Dodaj miasto</a>
 <a href="<c:url value="/"/>">Do Strony głównej</a>
 </body>
 </html>

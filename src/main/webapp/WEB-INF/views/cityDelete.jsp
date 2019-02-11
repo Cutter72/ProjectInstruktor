@@ -5,12 +5,14 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Home</title>
+    <title>Miasta</title>
 </head>
 <body>
-<h1>Witaj!</h1>
-
-<a href="<c:url value="/category"/>">Do kategorii</a>
-<a href="<c:url value="/city"/>">Do miast</a>
+<p>Czy napewno chcesz usunąć miasto ${cityToRemove.name}?</p>
+<form method="post">
+    <input type="submit" value="USUŃ" >
+</form>
+<hr>
+<button><a href="<c:url value="/city"/>">Powrót</a></button>
 </body>
 </html>

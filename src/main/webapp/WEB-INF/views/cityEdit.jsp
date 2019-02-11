@@ -5,23 +5,19 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Kategorie</title>
+    <title>Miasta</title>
 </head>
 <body>
-<p>Edytuj Kategorię</p>
+<p>Edytuj Miasto</p>
 <form:form method="post"
-           modelAttribute="category">
-    <p>Nazwa kategorii: </p>
+           modelAttribute="city">
+    <p>Nazwa miasta: </p>
     <form:input path="name"/>
     <form:errors path="name"/>
-    <p>Główna kategoria: </p>
-    <form:select path="parent.id">
-        <form:options items="${mainCategories}" itemLabel="name" itemValue="id"/>
-    </form:select>
-    <form:errors path="parent"/>
+    <form:select path="province" items="${provinceList}" itemLabel="name" itemValue="id"/>
     <p><input type="submit" value="EDYTUJ"></p>
 </form:form>
 <hr>
-<button><a href="<c:url value="/category"/>">Powrót</a></button>
+<button><a href="<c:url value="/city"/>">Powrót</a></button>
 </body>
 </html>
