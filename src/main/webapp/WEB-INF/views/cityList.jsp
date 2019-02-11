@@ -5,9 +5,12 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Home</title>
+    <title>City List</title>
 </head>
 <body>
-<h1>Witaj!</h1>
+<h1>City List</h1>
+<c:forEach items="${cityList}" var="city">
+    ${city.name} - ${city.province.name}<br>
+</c:forEach>
 </body>
 </html>
