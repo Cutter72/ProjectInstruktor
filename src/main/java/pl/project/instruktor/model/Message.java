@@ -2,10 +2,10 @@ package pl.project.instruktor.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Table(name = "messages")
+@ToString(exclude = {"recipientUser", "addresseeUser"})
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +26,20 @@ public class Message {
         created = LocalDateTime.now();
     }
 
-    @Size(max = 255)
+    @Size(max = 100)
+    @NotBlank
+    private String title;
+
+    @Size(max = 1000)
     private String messageText;
 
     @OneToOne
     private User recipientUser;
 
     @OneToOne
-    private User addresseeUser;
+    private User senderUser;
+
+    @ManyToOne
+    private Message parent;
 
 }

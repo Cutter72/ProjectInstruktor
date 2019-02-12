@@ -5,14 +5,14 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Home</title>
+    <title>Kategorie</title>
 </head>
 <body>
-<h1>Witaj!</h1>
-<ul>
-<li><a href="<c:url value="/category"/>">Do kategorii</a></li>
-<li><a href="<c:url value="/city"/>">Do miast</a></li>
-<li><a href="<c:url value="/message/1"/>">Do wiadomości</a></li>
-</ul>
+<p>Czy napewno chcesz usunąć wiadomość ${messageToRemove.title}?</p>
+<form method="post">
+    <input type="submit" value="USUŃ" >
+</form>
+<hr>
+<a href="<c:url value="/message/${currentUser.id}"/>">Powrót</a>
 </body>
 </html>
