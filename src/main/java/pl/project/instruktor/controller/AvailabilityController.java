@@ -38,6 +38,7 @@ public class AvailabilityController {
 
     @PostMapping("/byday/add")
     public String setAvailability(@RequestParam int startHour, @RequestParam int endHour,
+                                  @RequestParam(defaultValue = "1") int expiration,
                                   @RequestParam(defaultValue = "0") int pn,
                                   @RequestParam(defaultValue = "0") int wt,
                                   @RequestParam(defaultValue = "0") int sr,
@@ -57,7 +58,7 @@ public class AvailabilityController {
         for (Integer dayId : dayIdList) {
             if (dayId > 0) {
                 LocalDateTime now = LocalDateTime.now().with(DayOfWeek.of(dayId)).withMinute(0).withSecond(0).withNano(0);
-                for (Long i = 0L; i < 4; i++) {
+                for (Long i = 0L; i < expiration; i++) {
                     Availability availability = new Availability();
                     availability.setStartTime(now.withHour(startHour).plusDays(i * 7));
                     availability.setEndTime(now.withHour(endHour).plusDays(i * 7));

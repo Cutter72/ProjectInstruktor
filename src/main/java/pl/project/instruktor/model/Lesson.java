@@ -18,11 +18,11 @@ public class Lesson {
     private User instructor;
     @OneToOne
     private User student;
-
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     @OneToOne
     private Category category;
+    private boolean reservation;
 
 
 }

@@ -13,17 +13,21 @@
     <label>Start hour:
         <select name="startHour">
             <c:forEach begin="0" end="23" var="hour">
-                <option value="${hour}">${hour}</option>
+                <option value="${hour}">${hour}:00</option>
             </c:forEach>
         </select>
         <label>End hour:
             <select name="endHour">
-
                 <c:forEach begin="0" end="23" var="hour">
-                    <option value="${hour}">${hour}</option>
+                    <option value="${hour}">${hour}:00</option>
                 </c:forEach>
             </select>
         </label>
+        <label>Expiration in weeks:
+            <input type="number" min="1" max="51" step="1" name="expiration"/>
+            weeks, max 51.
+        </label>
+        <br/>
         <label>Day of week:
                 <c:forEach items="${dayList}" var="day">
                     <label>(${day.shortName}:
