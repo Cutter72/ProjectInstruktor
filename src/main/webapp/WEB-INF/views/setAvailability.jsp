@@ -5,11 +5,11 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8"/>
-    <title>Set Availability</title>
+    <title>Set Availability By Day</title>
 </head>
 <body>
-<h1>Set Availability</h1>
-<form action="">
+<h1>Set Availability By Day</h1>
+<form action="" method="post">
     <label>Start hour:
         <select name="startHour">
             <c:forEach begin="0" end="23" var="hour">
@@ -26,8 +26,9 @@
         </label>
         <label>Day of week:
                 <c:forEach items="${dayList}" var="day">
-                    <label>${day.shortName}
-                    <input type="checkbox" name="${day.name}" value="true"/>
+                    <label>(${day.shortName}:
+                    <input type="checkbox" name="${day.shortName}" value="${day.id}"/>
+                        )
                     </label>
                 </c:forEach>
         </label>
