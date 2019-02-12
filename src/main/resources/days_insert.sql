@@ -1,8 +1,8 @@
 INSERT INTO `instruktor`.`days` (`id`, `name`, `short_name`) VALUES
-('1', 'PONIEDZIAŁEK', 'PN'),
-('2', 'WTOREK', 'WT'),
-('3', 'ŚRODA', 'SR'),
-('4', 'CZWARTEK', 'CZ'),
-('5', 'PIĄTEK', 'PT'),
-('6', 'SOBOTA', 'SO'),
-('7', 'NIEDZIELA', 'ND');
+('1', 'PONIEDZIAŁEK', 'pn'),
+('2', 'WTOREK', 'wt'),
+('3', 'ŚRODA', 'sr'),
+('4', 'CZWARTEK', 'cz'),
+('5', 'PIĄTEK', 'pt'),
+('6', 'SOBOTA', 'so'),
+('7', 'NIEDZIELA', 'nd');

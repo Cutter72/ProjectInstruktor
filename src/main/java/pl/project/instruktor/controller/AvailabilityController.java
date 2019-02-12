@@ -38,22 +38,22 @@ public class AvailabilityController {
 
     @PostMapping("/byday/add")
     public String setAvailability(@RequestParam int startHour, @RequestParam int endHour,
-                                  @RequestParam(defaultValue = "0") int PN,
-                                  @RequestParam(defaultValue = "0") int WT,
-                                  @RequestParam(defaultValue = "0") int SR,
-                                  @RequestParam(defaultValue = "0") int CZ,
-                                  @RequestParam(defaultValue = "0") int PT,
-                                  @RequestParam(defaultValue = "0") int SO,
-                                  @RequestParam(defaultValue = "0") int ND
+                                  @RequestParam(defaultValue = "0") int pn,
+                                  @RequestParam(defaultValue = "0") int wt,
+                                  @RequestParam(defaultValue = "0") int sr,
+                                  @RequestParam(defaultValue = "0") int cz,
+                                  @RequestParam(defaultValue = "0") int pt,
+                                  @RequestParam(defaultValue = "0") int so,
+                                  @RequestParam(defaultValue = "0") int nd
     ) {
         List<Integer> dayIdList = new ArrayList<>();
-        dayIdList.add(PN);
-        dayIdList.add(WT);
-        dayIdList.add(SR);
-        dayIdList.add(CZ);
-        dayIdList.add(PT);
-        dayIdList.add(SO);
-        dayIdList.add(ND);
+        dayIdList.add(pn);
+        dayIdList.add(wt);
+        dayIdList.add(sr);
+        dayIdList.add(cz);
+        dayIdList.add(pt);
+        dayIdList.add(so);
+        dayIdList.add(nd);
         for (Integer dayId : dayIdList) {
             if (dayId > 0) {
                 LocalDateTime now = LocalDateTime.now().with(DayOfWeek.of(dayId)).withMinute(0).withSecond(0).withNano(0);
