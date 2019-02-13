@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="header.jsp" />
-<jsp:include page="navbar.jsp" />
-<jsp:include page="sidebar.jsp" />
+<jsp:include page="components/header.jsp" />
+<jsp:include page="components/navbar.jsp" />
+<jsp:include page="components/sidebar.jsp" />
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
-            <li><a href="<c:url value="/home"/>">
+            <li><a href="<c:url value="/panel"/>">
                 <em class="fa fa-home"></em>
             </a></li>
             <li class="active">Home</li>
@@ -57,4 +57,4 @@
     </div>
 
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="components/footer.jsp" />

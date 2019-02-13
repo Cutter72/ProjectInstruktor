@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/city")
+@RequestMapping("/panel/city")
 public class CityController {
 
     private final ProvinceRepository provinceRepository;
@@ -31,7 +31,7 @@ public class CityController {
 
     @GetMapping("/")
     public String cityListSlash(Model model){
-        return "redirect:/city";
+        return "redirect:/panel/city";
     }
 
     @GetMapping("")
@@ -51,7 +51,7 @@ public class CityController {
             return "cityAdd";
         }
         cityRepository.save(city);
-        return "redirect:/city";
+        return "redirect:/panel/city";
     }
 
     @GetMapping("/delete/{id}")
@@ -65,13 +65,12 @@ public class CityController {
     public String removeCitySuccess(@PathVariable long id) {
         City cityToRemove = cityRepository.getOne(id);
         cityRepository.delete(cityToRemove);
-        return "redirect:/city";
+        return "redirect:/panel/city";
     }
 
     @GetMapping("/edit/{id}")
     public String editCity(@PathVariable long id, Model model) {
         City cityToEdit = cityRepository.getOne(id);
-        cityToEdit.setName(cityToEdit.getName());
         model.addAttribute("city", cityToEdit);
         return "cityEdit";
     }
@@ -82,6 +81,6 @@ public class CityController {
             return "cityEdit";
         }
         cityRepository.save(city);
-        return "redirect:/city";
+        return "redirect:/panel/city";
     }
 }

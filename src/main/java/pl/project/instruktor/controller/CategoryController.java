@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/panel/category")
 public class CategoryController {
     private CategoryRepository categoryRepository;
 
@@ -42,14 +42,12 @@ public class CategoryController {
             return "categoryAdd";
         }
         categoryRepository.save(category);
-        return "redirect:/category";
+        return "redirect:/panel/category";
     }
 
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable long id, Model model) {
         Category categoryToEdit = categoryRepository.getOne(id);
-        categoryToEdit.setName(categoryToEdit.getName());
-        categoryToEdit.setParent(categoryToEdit.getParent());
         model.addAttribute("category", categoryToEdit);
         return "categoryEdit";
     }
@@ -60,7 +58,7 @@ public class CategoryController {
             return "categoryEdit";
         }
         categoryRepository.save(category);
-        return "redirect:/category";
+        return "redirect:/panel/category";
     }
 
     @GetMapping("/delete/{id}")
@@ -74,6 +72,6 @@ public class CategoryController {
     public String removeCategorySuccess(@PathVariable long id) {
         Category categoryToRemove = categoryRepository.getOne(id);
         categoryRepository.delete(categoryToRemove);
-        return "redirect:/category";
+        return "redirect:/panel/category";
     }
 }

@@ -1,3 +1,6 @@
+<%@ taglib prefix="form"
+		   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +21,10 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Log in</div>
 				<div class="panel-body">
-					<form role="form">
+					<form role="form" method="post">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+								<input class="form-control" placeholder="E-mail" name="username" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -31,7 +34,8 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<a href="home.jsp" class="btn btn-primary">Login</a></fieldset>
+							<input type="submit" class="btn btn-primary"></fieldset>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</form>
 				</div>
 			</div>

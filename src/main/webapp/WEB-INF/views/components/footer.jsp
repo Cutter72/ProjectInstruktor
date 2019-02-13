@@ -7,14 +7,14 @@
 </div><!--/.row-->
 </div>    <!--/.main-->
 
-<script src="../../resources/js/jquery-1.11.1.min.js"></script>
-<script src="../../resources/js/bootstrap.min.js"></script>
-<script src="../../resources/js/chart.min.js"></script>
-<script src="../../resources/js/chart-data.js"></script>
-<script src="../../resources/js/easypiechart.js"></script>
-<script src="../../resources/js/easypiechart-data.js"></script>
-<script src="../../resources/js/bootstrap-datepicker.js"></script>
-<script src="../../resources/js/custom.js"></script>
+<script src="../../../resources/js/jquery-1.11.1.min.js"></script>
+<script src="../../../resources/js/bootstrap.min.js"></script>
+<script src="../../../resources/js/chart.min.js"></script>
+<script src="../../../resources/js/chart-data.js"></script>
+<script src="../../../resources/js/easypiechart.js"></script>
+<script src="../../../resources/js/easypiechart-data.js"></script>
+<script src="../../../resources/js/bootstrap-datepicker.js"></script>
+<script src="../../../resources/js/custom.js"></script>
 <script>
     window.onload = function () {
         var chart1 = document.getElementById("line-chart").getContext("2d");

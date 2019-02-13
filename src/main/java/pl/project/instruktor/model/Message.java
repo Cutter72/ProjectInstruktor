@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Table(name = "messages")
-@ToString(exclude = {"recipientUser", "addresseeUser"})
+@ToString(exclude = {"recipientUser", "senderUser"})
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

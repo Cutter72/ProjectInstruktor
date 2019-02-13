@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.project.instruktor.model.City;
 
 import pl.project.instruktor.model.Message;
 import pl.project.instruktor.model.User;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/message")
+@RequestMapping("/panel/message")
 public class MessageController {
 
 
@@ -73,7 +72,7 @@ public class MessageController {
             return "messageResponse";
         }
         messageRepository.save(message);
-        return "redirect:/message/"+id;
+        return "redirect:/panel/message/"+id;
     }
 
     @GetMapping("/delete/{id}")
@@ -87,7 +86,7 @@ public class MessageController {
     public String messageRemoveSuccess(@PathVariable long id) {
         Message toRemove = messageRepository.getOne(id);
         messageRepository.delete(toRemove);
-        return "redirect:/message/"+id;
+        return "redirect:/panel/message/"+id;
     }
 
     @GetMapping("/add")
@@ -101,7 +100,7 @@ public class MessageController {
             return "messageAdd";
         }
         messageRepository.save(message);
-        return "redirect:/message/{id}";
+        return "redirect:/panel/message/{id}";
     }
 
 }

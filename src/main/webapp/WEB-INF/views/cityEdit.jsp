@@ -16,7 +16,7 @@
     <form:errors path="name"/>
     <form:select path="province" items="${provinceList}" itemLabel="name" itemValue="id"/>
     <p><input type="submit" value="EDYTUJ"></p>
-</form:form>
+C
 <hr>
 <button><a href="<c:url value="/city"/>">Powrót</a></button>
 </body>
