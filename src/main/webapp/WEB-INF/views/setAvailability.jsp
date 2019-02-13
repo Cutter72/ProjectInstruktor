@@ -11,7 +11,6 @@
 <h1>Set Availability By Day</h1>
 <form action="" method="post">
 
-
     <label>Day of week:<br/>
         <c:forEach items="${dayList}" var="day">
             <label>(${day.shortName}:<input type="checkbox" name="${day.shortName}" value="${day.id}"/>)</label>
@@ -38,7 +37,7 @@
         weeks, max 51.
     </label>
     <button type="submit">Dodaj*</button><br/>
-    <p>* - UWAGA! dodanie grafiku usunie wczesniejsze ustawienia</p>
+    <p>* - UWAGA! dodanie grafiku usunie wczesniejsze ustawienia!</p>
 </form>
 </body>
 </html>
