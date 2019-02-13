@@ -12,13 +12,13 @@
 <form action="" method="post">
     <label>Start hour:
         <select name="startHour">
-            <c:forEach begin="0" end="23" var="hour">
+            <c:forEach begin="6" end="22" var="hour">
                 <option value="${hour}">${hour}:00</option>
             </c:forEach>
         </select>
         <label>End hour:
             <select name="endHour">
-                <c:forEach begin="0" end="23" var="hour">
+                <c:forEach begin="6" end="22" var="hour">
                     <option value="${hour}">${hour}:00</option>
                 </c:forEach>
             </select>

@@ -10,11 +10,11 @@ import pl.project.instruktor.model.Availability;
 import pl.project.instruktor.model.Day;
 import pl.project.instruktor.repository.AvailabilityRepository;
 import pl.project.instruktor.repository.DayRepository;
+import pl.project.instruktor.repository.LessonRepository;
+import pl.project.instruktor.service.AvailabilityService;
 
 import javax.transaction.Transactional;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,11 +24,15 @@ import java.util.stream.Collectors;
 @Transactional
 public class AvailabilityController {
     private final DayRepository dayRepository;
+    private final LessonRepository lessonRepository;
     private final AvailabilityRepository availabilityRepository;
+    private final AvailabilityService availabilityService;
 
-    public AvailabilityController(DayRepository dayRepository, AvailabilityRepository availabilityRepository) {
+    public AvailabilityController(DayRepository dayRepository, LessonRepository lessonRepository, AvailabilityRepository availabilityRepository, AvailabilityService availabilityService) {
         this.dayRepository = dayRepository;
+        this.lessonRepository = lessonRepository;
         this.availabilityRepository = availabilityRepository;
+        this.availabilityService = availabilityService;
     }
 
     @GetMapping("/byday/add")
@@ -50,28 +54,23 @@ public class AvailabilityController {
                                   @RequestParam(defaultValue = "0") int so,
                                   @RequestParam(defaultValue = "0") int nd
     ) {
-        List<Integer> dayIdList = new ArrayList<>();
-        dayIdList.add(pn);
-        dayIdList.add(wt);
-        dayIdList.add(sr);
-        dayIdList.add(cz);
-        dayIdList.add(pt);
-        dayIdList.add(so);
-        dayIdList.add(nd);
+        List<Integer> dayIdList = availabilityService.gatherDays(pn, wt, sr, cz, pt, so, nd);
+        if (startHour > endHour) {
+            int tmp = startHour;
+            startHour = endHour;
+            endHour = tmp;
+        }
         availabilityRepository.deleteAllByInstructorId(instructorId);
         for (Integer dayId : dayIdList) {
             if (dayId > 0) {
-                LocalDateTime now = LocalDateTime.now().with(DayOfWeek.of(dayId)).withMinute(0).withSecond(0).withNano(0);
-                LocalDateTime startTime = now.withHour(startHour);
-                LocalDateTime endTime = now.withHour(endHour);
                 for (Long i = 0L; i < expiration; i++) {
-                    Day day = dayRepository.getOne((long)dayId);
-                    Availability availability = new Availability();
-                    availability.setStartTime(startTime.plusDays(i * 7));
-                    availability.setEndTime(endTime.plusDays(i * 7));
-                    availability.setDay(day);
-                    availability.setInstructor();
-                    availabilityRepository.save(availability);
+                    LocalDateTime startPeriodicity = availabilityService.createDayTime(startHour,dayId).plusDays(i * 7);
+                    LocalDateTime endPeriodicity = availabilityService.createDayTime(endHour,dayId).plusDays(i * 7);
+                    Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, dayId, instructorId);
+                    availabilityRepository.save(availabilityToAdd);
+
+                    lessonRepository.deleteAllByInstructorId(instructorId);
+                    availabilityService.generateLessons(startHour,endHour, instructorId,startPeriodicity,endPeriodicity);
                 }
             }
         }
@@ -82,4 +81,6 @@ public class AvailabilityController {
     public String test() {
         return "redirect:/availability/byday/add";
     }
+
+
 }
