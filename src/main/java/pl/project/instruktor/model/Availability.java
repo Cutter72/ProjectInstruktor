@@ -18,6 +18,8 @@ public class Availability {
     private User instructor;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    @OneToOne
+    private Day day;
 
 
 }
