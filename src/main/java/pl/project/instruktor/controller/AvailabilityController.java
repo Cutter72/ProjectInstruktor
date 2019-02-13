@@ -2,10 +2,7 @@ package pl.project.instruktor.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.project.instruktor.model.Availability;
 import pl.project.instruktor.model.Day;
 import pl.project.instruktor.repository.AvailabilityRepository;
@@ -43,8 +40,7 @@ public class AvailabilityController {
     }
 
     @PostMapping("/byday/add")
-    public String setAvailability(@RequestParam int startHour, @RequestParam int endHour,
-                                  @RequestParam(defaultValue = "1") int expiration,
+    public String setAvailability(@RequestParam(defaultValue = "1") int expiration,
                                   @RequestParam(defaultValue = "1") Long instructorId,
                                   @RequestParam(defaultValue = "0") int pn,
                                   @RequestParam(defaultValue = "0") int wt,
@@ -52,25 +48,37 @@ public class AvailabilityController {
                                   @RequestParam(defaultValue = "0") int cz,
                                   @RequestParam(defaultValue = "0") int pt,
                                   @RequestParam(defaultValue = "0") int so,
-                                  @RequestParam(defaultValue = "0") int nd
+                                  @RequestParam(defaultValue = "0") int nd,
+                                  @RequestParam(defaultValue = "0") int pnStartHour,
+                                  @RequestParam(defaultValue = "0") int wtStartHour,
+                                  @RequestParam(defaultValue = "0") int srStartHour,
+                                  @RequestParam(defaultValue = "0") int czStartHour,
+                                  @RequestParam(defaultValue = "0") int ptStartHour,
+                                  @RequestParam(defaultValue = "0") int soStartHour,
+                                  @RequestParam(defaultValue = "0") int ndStartHour,
+                                  @RequestParam(defaultValue = "0") int pnEndHour,
+                                  @RequestParam(defaultValue = "0") int wtEndHour,
+                                  @RequestParam(defaultValue = "0") int srEndHour,
+                                  @RequestParam(defaultValue = "0") int czEndHour,
+                                  @RequestParam(defaultValue = "0") int ptEndHour,
+                                  @RequestParam(defaultValue = "0") int soEndHour,
+                                  @RequestParam(defaultValue = "0") int ndEndHour
     ) {
-        List<Integer> dayIdList = availabilityService.gatherDays(pn, wt, sr, cz, pt, so, nd);
-        if (startHour > endHour) {
-            int tmp = startHour;
-            startHour = endHour;
-            endHour = tmp;
-        }
+        int[][] weekSchedule = availabilityService.gatherDays(pn, wt, sr, cz, pt, so, nd,
+                pnStartHour, wtStartHour, srStartHour, czStartHour, ptStartHour, soStartHour, ndStartHour,
+                pnEndHour, wtEndHour, srEndHour, czEndHour, ptEndHour, soEndHour, ndEndHour);
+
         availabilityRepository.deleteAllByInstructorId(instructorId);
-        for (Integer dayId : dayIdList) {
-            if (dayId > 0) {
-                for (Long i = 0L; i < expiration; i++) {
-                    LocalDateTime startPeriodicity = availabilityService.createDayTime(startHour,dayId).plusDays(i * 7);
-                    LocalDateTime endPeriodicity = availabilityService.createDayTime(endHour,dayId).plusDays(i * 7);
-                    Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, dayId, instructorId);
+        lessonRepository.deleteAllByInstructorId(instructorId);
+        for (Integer i = 0; i < weekSchedule.length; i++) {
+            if (weekSchedule[i][0] > 0) {
+                for (Long j = 0L; j < expiration; j++) {
+                    LocalDateTime startPeriodicity = availabilityService.createDayTime(weekSchedule[i][1],weekSchedule[i][0]).plusDays(j * 7);
+                    LocalDateTime endPeriodicity = availabilityService.createDayTime(weekSchedule[i][2],weekSchedule[i][0]).plusDays(j * 7);
+                    Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, weekSchedule[i][0], instructorId);
                     availabilityRepository.save(availabilityToAdd);
 
-                    lessonRepository.deleteAllByInstructorId(instructorId);
-                    availabilityService.generateLessons(startHour,endHour, instructorId,startPeriodicity,endPeriodicity);
+                    availabilityService.generateLessons(weekSchedule[i][1],weekSchedule[i][2], instructorId,startPeriodicity,endPeriodicity);
                 }
             }
         }

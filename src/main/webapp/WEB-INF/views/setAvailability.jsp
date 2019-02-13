@@ -10,33 +10,35 @@
 <body>
 <h1>Set Availability By Day</h1>
 <form action="" method="post">
-    <label>Start hour:
-        <select name="startHour">
-            <c:forEach begin="6" end="22" var="hour">
-                <option value="${hour}">${hour}:00</option>
-            </c:forEach>
-        </select>
-        <label>End hour:
-            <select name="endHour">
-                <c:forEach begin="6" end="22" var="hour">
-                    <option value="${hour}">${hour}:00</option>
-                </c:forEach>
-            </select>
-        </label>
-        <label>Expiration in weeks:
-            <input type="number" min="1" max="51" step="1" name="expiration"/>
-            weeks, max 51.
-        </label>
-        <br/>
-        <label>Day of week:
-                <c:forEach items="${dayList}" var="day">
-                    <label>(${day.shortName}:
-                    <input type="checkbox" name="${day.shortName}" value="${day.id}"/>
-                        )
-                    </label>
-                </c:forEach>
-        </label>
-        <button type="submit">Dodaj</button>
+
+
+    <label>Day of week:<br/>
+        <c:forEach items="${dayList}" var="day">
+            <label>(${day.shortName}:<input type="checkbox" name="${day.shortName}" value="${day.id}"/>)</label>
+            <label>Start hour:
+                <select name="${day.shortName}StartHour">
+                    <c:forEach begin="6" end="22" var="hour">
+                        <option value="${hour}">${hour}:00</option>
+                    </c:forEach>
+                </select>
+            </label>
+            <label>End hour:
+                <select name="${day.shortName}EndHour">
+                    <c:forEach begin="6" end="22" var="hour">
+                        <option value="${hour}">${hour}:00</option>
+                    </c:forEach>
+                </select>
+            </label>
+            <br/>
+        </c:forEach>
+    </label>
+
+    <label>Expiration in weeks:
+        <input type="number" min="1" max="51" step="1" name="expiration"/>
+        weeks, max 51.
+    </label>
+    <button type="submit">Dodaj*</button><br/>
+    <p>* - UWAGA! dodanie grafiku usunie wczesniejsze ustawienia</p>
 </form>
 </body>
 </html>
