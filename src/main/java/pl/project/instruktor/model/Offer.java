@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -20,13 +23,24 @@ public class Offer {
     @Min(30)
     private int minutes;
 
-    private String latitude;
-    private String longitude;
+    @NotBlank
+    private String description;
+
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String title;
 
     @OneToOne
     private User user;
 
     @OneToOne
     private Category category;
+
+    private LocalDateTime created;
+
+    @PrePersist
+    public void prePersist() {
+        created = LocalDateTime.now();
+    }
 
 }

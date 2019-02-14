@@ -13,7 +13,7 @@
             <a class="navbar-brand" href="<c:url value="/panel"/>"><span>Instruktor</span>Panel</a>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <em class="fa fa-envelope"></em><span class="label label-danger">1</span>
+                    <em class="fa fa-envelope"></em><span class="label label-danger"></span>
                 </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>

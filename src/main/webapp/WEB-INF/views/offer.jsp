@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <jsp:include page="components/header.jsp"/>
 <jsp:include page="components/navbar.jsp"/>
 <jsp:include page="components/sidebar.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
@@ -13,74 +15,76 @@
             <li><a href="<c:url value="/"/>">
                 <em class="fa fa-home"></em>
             </a></li>
-            <li class="active">Home</li>
+            <li class="active">Oferty</li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Profil</h1>
+            <h1 class="page-header">Oferty</h1>
         </div>
     </div><!--/.row-->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Twoje dane</div>
-                <div class="panel-body">
-                    <form:form method="post"
-                               modelAttribute="user" role="form">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Imie</label>
-                                <form:input path="firstName" class="form-control"/>
-                                <form:errors path="firstName" class="form-group has-error"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Nazwisko</label>
-                                <form:input path="lastName" class="form-control"/>
-                                <form:errors path="lastName" class="form-group has-error"/>
-
-                            </div>
-                            <div class="form-group">
-                                <label>E-mail</label>
-                                <form:input path="email" class="form-control"/>
-                                <form:errors path="email" class="form-group has-error"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <form:input path="password" type="password" class="form-control"/>
-                                <form:errors path="password" class="form-group has-error"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Telefon</label>
-                                <form:input path="phoneNumber" class="form-control"/>
-                                <form:errors path="phoneNumber" class="form-group has-error"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Video Link</label>
-                                <form:input path="videoLink" class="form-control"/>
-                                <form:errors path="videoLink" class="form-group has-error"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Facebook Link</label>
-                                <form:input path="facebookLink" class="form-control"/>
-                                <form:errors path="facebookLink" class="form-group has-error"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Opis</label>
-                                <form:textarea path="description" class="form-control" rows="27"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary">Edytuj</button>
-                        </div>
-                    </form:form>
-                </div>
+    <button type="button" class="btn btn-md btn-primary"><a class="btn btn-md btn-primary"
+                                                            href="<c:url value="/panel/offer/add"/>">Dodaj nową
+        ofertę</a></button>
+    <c:forEach items="${offers}" var="offer">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dodano: <javatime:format value="${offer.created}" style="MM" />
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
             </div>
-        </div><!-- /.panel-->
-    </div><!-- /.col-->
+            <div class="panel-body">
+                <form class="form-horizontal" action="" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Tytuł</label>
+                            <div class="col-md-9">
+                                    ${offer.title}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Minuty</label>
+                            <div class="col-md-9">
+                                    ${offer.minutes}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Cena</label>
+                            <div class="col-md-9">
+                                    ${offer.price}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Kategoria</label>
+                            <div class="col-md-9">
+                                    ${offer.category.name}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Opis</label>
+                            <div class="col-md-9">
+                                ${offer.description}
+                            </div>
+                        </div>
+
+                        <!-- Form actions -->
+                        <div class="form-group">
+                            <div class="col-md-3 widget-right">
+                                <a class="btn btn-md btn-primary" href="<c:url value="/panel/offer/edit/${offer.id}"/>">Edytuj</a>
+                            </div>
+                            <div class="col-md-3 widget-right">
+                                <a class="btn btn-md btn-primary" href="<c:url value="/panel/offer/delete/${offer.id}"/>">Usuń</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </c:forEach>
+</div>
+<!-- /.col-->
 
 
 <jsp:include page="components/footer.jsp"/>
