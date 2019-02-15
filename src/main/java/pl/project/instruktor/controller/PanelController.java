@@ -47,8 +47,6 @@ public class PanelController {
         int size1 = allByRecipientUserId.size();
         model.addAttribute("numberOfMessages", size1);
 
-
-
         return "panel";
     }
 

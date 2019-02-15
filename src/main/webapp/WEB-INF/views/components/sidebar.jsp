@@ -22,8 +22,8 @@
     </form>
     <ul class="nav menu">
         <li><a href="<c:url value="/panel"/>"><em class="fa fa-home">&nbsp;</em>Panel</a></li>
-        <li><a href="<c:url value="/panel/user"/>"><em class="fa fa-user">&nbsp;</em> Profil</a></li>
         <li><a href="<c:url value="/panel/message"/>"><em class="fa fa-envelope">&nbsp;</em> Wiadomośći</a></li>
+        <li><a href="<c:url value="/panel/user"/>"><em class="fa fa-user">&nbsp;</em> Profil</a></li>
         <li><a href="<c:url value="/panel/offer"/>"><em class="fa fa-product-hunt">&nbsp;</em> Oferty</a></li>
         <li><a href="<c:url value="/panel/calendar"/>"><em class="fa fa-calendar">&nbsp;</em> Kalendarz</a></li>
         <%--<li><a href="../../login"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>--%>
