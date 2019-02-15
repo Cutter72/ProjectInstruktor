@@ -43,15 +43,10 @@ public class OfferController {
         model.addAttribute("categories", categoryList);
     }
 
-    @ModelAttribute("offers")
-    public void offers(@AuthenticationPrincipal CurrentUser customUser, Model model) {
-        List<Offer> offerList = offerRepository.getAllByUserIdSortByDate(customUser.getUser().getId());
-        model.addAttribute("offers", offerList);
-    }
 
     @GetMapping("")
     public String listOffers(@AuthenticationPrincipal CurrentUser customUser, Model model) {
-        List<Offer> allByUserId = offerRepository.getAllByUserId(customUser.getUser().getId());
+        List<Offer> allByUserId = offerRepository.getAllByUserIdSortByDate(customUser.getUser().getId());
         model.addAttribute("offers", allByUserId);
         return "offer";
     }

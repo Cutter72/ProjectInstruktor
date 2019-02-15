@@ -45,7 +45,7 @@
                                             <td>${message.senderUser.firstName} ${message.senderUser.lastName} </td>
                                             <td>${message.title}</td>
                                             <td>${message.created}</td>
-                                            <td><a href="/message/view/${message.id}"> Wyświetl </a></td>
+                                            <td><a href="/panel/message/view/${message.id}"> Wyświetl </a></td>
                                         </tr>
                                     </form>
                                 </c:forEach>
@@ -66,7 +66,7 @@
                                             <td>${message.recipientUser.firstName} ${message.recipientUser.lastName}</td>
                                             <td>${message.title}</td>
                                             <td>${message.created}</td>
-                                            <td><a href="/message/view/${message.id}"> Wyświetl </a></td>
+                                            <td><a href="/panel/message/view/${message.id}"> Wyświetl </a></td>
                                         </tr>
                                     </form>
                                 </c:forEach>

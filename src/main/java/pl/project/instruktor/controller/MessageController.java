@@ -47,7 +47,7 @@ public class MessageController {
     public String messageView(@PathVariable long id, Model model) {
         Message toView = messageRepository.getOne(id);
         model.addAttribute("messageToView", toView);
-        return "messageView";
+        return "message/messageView";
     }
 
     @GetMapping("/response/{id}")
@@ -56,30 +56,30 @@ public class MessageController {
         model.addAttribute("messageToResponse", toResponse);
         model.addAttribute("message", new Message());
 
-        return "messageResponse";
+        return "message/messageResponse";
     }
 
     @PostMapping("/response/{id}")
     public String messageResponseSuccess(@Valid Message message, BindingResult result, @PathVariable long id) {
         if (result.hasErrors()) {
-            return "messageResponse";
+            return "message/messageResponse";
         }
         messageRepository.save(message);
-        return "redirect:/panel/message/"+id;
+        return "redirect:/panel/message";
     }
 
     @GetMapping("/delete/{id}")
     public String messageRemove(@PathVariable long id, Model model) {
         Message toRemove = messageRepository.getOne(id);
         model.addAttribute("messageToRemove", toRemove);
-        return "messageDelete";
+        return "message/messageDelete";
     }
 
     @PostMapping("/delete/{id}")
     public String messageRemoveSuccess(@PathVariable long id) {
         Message toRemove = messageRepository.getOne(id);
         messageRepository.delete(toRemove);
-        return "redirect:/panel/message/"+id;
+        return "redirect:/panel/message";
     }
 
     @GetMapping("/add")
@@ -90,10 +90,10 @@ public class MessageController {
     @PostMapping("/add")
     public String messageSuccess(@Valid Message message, BindingResult result){
         if (result.hasErrors()) {
-            return "messageAdd";
+            return "message/messageAdd";
         }
         messageRepository.save(message);
-        return "redirect:/panel/message/{id}";
+        return "redirect:/panel/message";
     }
 
 }

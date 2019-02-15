@@ -22,14 +22,14 @@
                     <td>${message.recipientUser.firstName} ${message.recipientUser.lastName}</td>
                     <td>${message.title}</td>
                     <td>${message.created}</td>
-                    <td><a href="/message/view/${message.id}"> Wyświetl </a></td>
+                    <td><a href="/panel/message/view/${message.id}"> Wyświetl </a></td>
                 </tr>
             </form>
         </c:forEach>
     </table>
 </section>
 <hr>
-<a href="<c:url value="/message/${currentUser.id}"/>">Powrót</a>
+<a href="<c:url value="/panel/message"/>">Powrót</a>
 <a href="<c:url value="/"/>">Do Strony głównej</a>
 </body>
 </html>

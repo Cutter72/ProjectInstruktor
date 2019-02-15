@@ -20,10 +20,10 @@
         </tr>
     </table>
     <table>
-        <td><a href="/message/response/${messageToView.id}"> Odpowiedz </a></td>
-        <td><a href="/message/delete/${messageToView.id}"> Usuń </a></td>
+        <td><a href="/panel/message/response/${messageToView.id}"> Odpowiedz </a></td>
+        <td><a href="/panel/message/delete/${messageToView.id}"> Usuń </a></td>
     </table>
     <hr>
-    <a href="<c:url value="/message/${currentUser.id}"/>">Powrót</a>
+    <a href="<c:url value="/panel/message"/>">Powrót</a>
 </body>
 </html>

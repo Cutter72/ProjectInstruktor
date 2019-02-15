@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="javatime" uri="http://sargue.net/jsptags/time" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <jsp:include page="components/header.jsp"/>
@@ -61,7 +62,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-teal panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                        <div class="large">754</div>
+                        <div class="large">${offersize}</div>
                         <div class="text-muted">Oferty</div>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-blue panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-                        <div class="large">238</div>
+                        <div class="large">${userssize}</div>
                         <div class="text-muted">Instruktorzy</div>
                     </div>
                 </div>
@@ -77,7 +78,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-orange panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-                        <div class="large">1200</div>
+                        <div class="large">15</div>
                         <div class="text-muted">Uczniowie</div>
                     </div>
                 </div>
@@ -85,7 +86,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-red panel-widget ">
                     <div class="row no-padding"><em class="fa fa-xl fa-calendar color-red"></em>
-                        <div class="large">360</div>
+                        <div class="large">37</div>
                         <div class="text-muted">Lekcje</div>
                     </div>
                 </div>
@@ -104,13 +105,20 @@
                 <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">${offer.title}</div>
+                        Dodano: <javatime:format value="${offer.created}" style="MM"/>
                         <div class="panel-body">
                             <p>${offer.description}</p>
                         </div>
+                        <form method="post">
+                            <div class="form-group">
+                                <div class="col-md-3 widget-right">
+                                    <a class="btn btn-md btn-primary" href="<c:url value="/home/offer/${offer.id}"/>">Szczegóły</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </c:forEach>
-            
         </div>
     </div>
 </div>

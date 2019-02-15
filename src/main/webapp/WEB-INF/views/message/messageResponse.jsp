@@ -35,6 +35,6 @@
     <p><input type="submit" value="WYŚLIJ"></p>
     </form:form>
     <hr>
-    <a href="<c:url value="/message/${currentUser.id}"/>">Powrót</a>
+    <a href="<c:url value="/panel/message"/>">Powrót</a>
 </body>
 </html>
