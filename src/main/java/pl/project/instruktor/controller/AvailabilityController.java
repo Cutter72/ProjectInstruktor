@@ -62,7 +62,8 @@ public class AvailabilityController {
                                   @RequestParam(defaultValue = "0") int czEndHour,
                                   @RequestParam(defaultValue = "0") int ptEndHour,
                                   @RequestParam(defaultValue = "0") int soEndHour,
-                                  @RequestParam(defaultValue = "0") int ndEndHour
+                                  @RequestParam(defaultValue = "0") int ndEndHour,
+                                  Model model
     ) {
         int[][] weekSchedule = availabilityService.gatherDays(pn, wt, sr, cz, pt, so, nd,
                 pnStartHour, wtStartHour, srStartHour, czStartHour, ptStartHour, soStartHour, ndStartHour,
@@ -82,13 +83,8 @@ public class AvailabilityController {
                 }
             }
         }
-        return "redirect:/availability/byday/add";
+        model.addAttribute("success", "Grafik Ustalono!");
+        return "redirect:/panel/schedule";
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "redirect:/availability/byday/add";
-    }
-
 
 }

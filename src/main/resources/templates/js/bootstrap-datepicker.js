@@ -1662,6 +1662,7 @@
 			e.preventDefault();
 			// component click requires us to explicitly show it
 			$this.datepicker('show');
+			console.log("dupa");
 		}
 	);
 	$(function(){

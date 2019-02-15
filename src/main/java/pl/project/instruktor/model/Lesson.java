@@ -24,5 +24,4 @@ public class Lesson {
     private Category category;
     private boolean reservation;
 
-
 }

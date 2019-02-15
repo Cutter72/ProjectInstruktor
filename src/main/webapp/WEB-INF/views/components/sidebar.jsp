@@ -23,7 +23,7 @@
     <ul class="nav menu">
         <li class="active"><a href="<c:url value="/panel"/>"><em class="fa fa-home">&nbsp;</em> Dashboard</a></li>
         <li><a href="<c:url value="/panel/user/edit/1"/>"><em class="fa fa-user">&nbsp;</em> Profil</a></li>
-        <li><a href="#"><em class="fa fa-calendar">&nbsp;</em> Kalendarz</a></li>
+        <li><a href="<c:url value="/panel/schedule"/>"><em class="fa fa-calendar">&nbsp;</em> Kalendarz</a></li>
         <li><a href="#"><em class="fa fa-product-hunt">&nbsp;</em> Oferty</a></li>
         <li><a href="<c:url value="/panel/message/1"/>"><em class="fa fa-envelope">&nbsp;</em> Wiadomośći</a></li>
         <li><a href="<c:url value="/panel/city"/>"<em class="fa fa-building">&nbsp;</em> City</a></li>
