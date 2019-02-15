@@ -9,6 +9,7 @@ import pl.project.instruktor.model.Day;
 import pl.project.instruktor.model.Lesson;
 import pl.project.instruktor.repository.DayRepository;
 import pl.project.instruktor.repository.LessonRepository;
+import pl.project.instruktor.service.LessonService;
 
 
 import java.time.Month;
@@ -21,10 +22,12 @@ import java.util.stream.Collectors;
 public class ScheduleController {
     private final DayRepository dayRepository;
     private final LessonRepository lessonRepository;
+    private final LessonService lessonService;
 
-    public ScheduleController(DayRepository dayRepository, LessonRepository lessonRepository) {
+    public ScheduleController(DayRepository dayRepository, LessonRepository lessonRepository, LessonService lessonService) {
         this.dayRepository = dayRepository;
         this.lessonRepository = lessonRepository;
+        this.lessonService = lessonService;
     }
 
     @GetMapping("")
@@ -35,17 +38,25 @@ public class ScheduleController {
     }
 
     @GetMapping("/{year}/{month}/{day}")
-    public String scheduleDetails(@PathVariable String year,@PathVariable String month,@PathVariable String day, Model model){
-        String date = year + "-" + Integer.toString(Month.valueOf(month.toUpperCase()).getValue()) + "-" + day;
-        String dateTimeZero =  date+ " 0:00:00";
-        String dateTimeMidnight =  date+ " 23:59:59";
-        List<Lesson> lessonList = lessonRepository.findAllByStartTime(dateTimeZero,dateTimeMidnight);
+    public String scheduleDetails(@PathVariable int year,@PathVariable String month,@PathVariable int day, Model model){
         List<Day> dayList = dayRepository.findAll().stream().sorted(Comparator.comparing(Day::getId)).collect(Collectors.toList());
         model.addAttribute("dayList", dayList);
-        model.addAttribute("lessonList", lessonList);
-        for (Lesson lesson : lessonList) {
-            System.out.println(lesson.getStartTime().getHour());
-        }
+
+        int monthNumber = Month.valueOf(month.toUpperCase()).getValue();
+        model.addAttribute("pnLessonList", lessonService.getPnLessons(year, monthNumber, day));
+        model.addAttribute("pnDate", lessonService.getPnDate());
+        model.addAttribute("wtLessonList", lessonService.getWtLessons(year, monthNumber, day));
+        model.addAttribute("wtDate", lessonService.getWtDate());
+        model.addAttribute("srLessonList", lessonService.getSrLessons(year, monthNumber, day));
+        model.addAttribute("srDate", lessonService.getSrDate());
+        model.addAttribute("czLessonList", lessonService.getCzLessons(year, monthNumber, day));
+        model.addAttribute("czDate", lessonService.getCzDate());
+        model.addAttribute("ptLessonList", lessonService.getPtLessons(year, monthNumber, day));
+        model.addAttribute("ptDate", lessonService.getPtDate());
+        model.addAttribute("soLessonList", lessonService.getSoLessons(year, monthNumber, day));
+        model.addAttribute("soDate", lessonService.getSoDate());
+        model.addAttribute("ndLessonList", lessonService.getNdLessons(year, monthNumber, day));
+        model.addAttribute("ndDate", lessonService.getNdDate());
         return "scheduleDetails";
     }
 }

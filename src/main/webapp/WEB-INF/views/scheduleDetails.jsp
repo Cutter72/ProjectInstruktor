@@ -46,20 +46,71 @@
                 <div class="panel-body">
                     <table class="table">
                         <tr>
-                            <c:forEach items="${dayList}" var="day">
-                                <th class="week-number-cell">${day.name}</th>
-                            </c:forEach>
+                            <th class="week-number-cell">Poniedziałek<br/>${pnDate}</th>
+                            <th class="week-number-cell">Wtorek<br/>${wtDate}</th>
+                            <th class="week-number-cell">Środa<br/>${srDate}</th>
+                            <th class="week-number-cell">Czwartek<br/>${czDate}</th>
+                            <th class="week-number-cell">Piątek<br/>${ptDate}</th>
+                            <th class="week-number-cell">Sobota<br/>${soDate}</th>
+                            <th class="week-number-cell">Niedziela<br/>${ndDate}</th>
                         </tr>
                         <tr>
-                            <c:forEach begin="1" end="7">
-                                <td>
-                                    <c:forEach begin="1" end="7" var="n">
-                                        <button type="button" class="btn btn-default"
-                                                style="width: 72px; margin-bottom: 5px">godz. ${n}</button>
-                                        <br/>
-                                    </c:forEach>
-                                </td>
-                            </c:forEach>
+                            <td>
+                                <c:forEach items="${pnLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${wtLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${srLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${czLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${ptLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${soLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach items="${ndLessonList}" var="lesson">
+                                    <button type="button" class="btn btn-default"
+                                            style="width: 72px; margin-bottom: 5px">${lesson.startTime.hour}:00
+                                    </button>
+                                    <br/>
+                                </c:forEach>
+                            </td>
                         </tr>
 
                     </table>
