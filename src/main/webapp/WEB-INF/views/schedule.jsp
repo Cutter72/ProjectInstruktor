@@ -45,11 +45,11 @@
                             class="fa fa-toggle-up"></em></span></div>
                 <div class="panel-body">
                     <fieldset>
-                        <%--<c:if test="${not empty message}">--%>
-                            <%--<div class="message-body">--%>
-                                <%--${message}--%>
-                            <%--</div>--%>
-                        <%--</c:if>--%>
+                        <c:if test="${not empty message}">
+                            <div class="alert">
+                                <h1>${message}</h1>
+                            </div>
+                        </c:if>
                         <form:form method="post" action="/panel/availability/byday/add">
                             <table class="table-condensed">
                                 <c:forEach items="${dayList}" var="day">

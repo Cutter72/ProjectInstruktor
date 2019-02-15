@@ -4,6 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.project.instruktor.model.Availability;
 import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Day;
@@ -65,7 +66,8 @@ public class AvailabilityController {
                                   @RequestParam(defaultValue = "0") int ptEndHour,
                                   @RequestParam(defaultValue = "0") int soEndHour,
                                   @RequestParam(defaultValue = "0") int ndEndHour,
-                                  Model model
+                                  Model model,
+                                  RedirectAttributes redirectAttributes
     ) {
         int[][] weekSchedule = availabilityService.gatherDays(pn, wt, sr, cz, pt, so, nd,
                 pnStartHour, wtStartHour, srStartHour, czStartHour, ptStartHour, soStartHour, ndStartHour,
@@ -85,7 +87,7 @@ public class AvailabilityController {
                 }
             }
         }
-        model.addAttribute("success", "Grafik Ustalono!");
+        redirectAttributes.addFlashAttribute("message", "Ustalono grfik!");
         return "redirect:/panel/schedule";
     }
 

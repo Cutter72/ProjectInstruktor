@@ -127,6 +127,11 @@
                     <fieldset>
                         <form:form method="post" action="/panel/availability/byday/add">
                             <table class="table-condensed">
+                                <c:if test="${not empty message}">
+                                    <div class="alert">
+                                        <h1>${message}</h1>
+                                    </div>
+                                </c:if>
                                 <c:forEach items="${dayList}" var="day">
                                     <tr>
                                         <td><input type="checkbox" name="${day.shortName}" value="${day.id}"/></td>
