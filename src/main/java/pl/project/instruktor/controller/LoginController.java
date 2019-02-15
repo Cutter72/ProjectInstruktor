@@ -30,30 +30,16 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        User newUser = new User();
-        newUser.setPassword("user");
-        newUser.setUsername("user");
-        newUser.setFirstName("Jan");
-        newUser.setLastName("Kowalski");
-        newUser.setEmail("janek.kowalski@gmail.pl");
 
-        userService.saveUser(newUser);
-        return "Dodano";
-    }
-
-    @GetMapping("/add")
+    @GetMapping("/register")
     public String addUser(@ModelAttribute User user) {
-
-        return "userAdd";
+        return "register";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/register")
     public String addUserSuccess(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "userAdd";
+            return "register";
         }
         userServiceImpl.saveUser(user);
         return "redirect:/login";
