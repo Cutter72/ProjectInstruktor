@@ -16,6 +16,5 @@
 <script src="/resources/js/bootstrap-datepicker.js"></script>
 <script src="/resources/js/custom.js"></script>
 
-
 </body>
 </html>

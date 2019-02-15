@@ -24,7 +24,7 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String username;
-    @NotBlank
+
     private String password;
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

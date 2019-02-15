@@ -1,10 +1,12 @@
 package pl.project.instruktor.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Message;
 import pl.project.instruktor.model.User;
 import pl.project.instruktor.repository.MessageRepository;
@@ -29,25 +31,16 @@ public class MessageController {
     }
 
     @ModelAttribute("currentUser")
-    public User getCurrentUser(){
-        return userRepository.getOne(1l);
+    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model){
+        User currentUser = userRepository.getOne(customUser.getUser().getId());
+        model.addAttribute("currentUser", currentUser);
     }
 
-    @GetMapping("/{id}")
-    public String messageBox() {
-        return "messageBox";
-    }
-
-    @GetMapping("/received/{id}")
-    public String receivedList(@PathVariable long id, Model model) {
-        model.addAttribute("messageList", messageRepository.findAllByRecipientUserId(id));
-        return "messageReceived";
-    }
-
-    @GetMapping("/send/{id}")
-    public String sendList(@PathVariable long id, Model model) {
-        model.addAttribute("messageList", messageRepository.findAllBySenderUserId(id));
-        return "messageSend";
+    @GetMapping("")
+    public String messageBox(@AuthenticationPrincipal CurrentUser customUser, Model model) {
+        model.addAttribute("messageReceived", messageRepository.findAllByRecipientUserId(customUser.getUser().getId()));
+        model.addAttribute("messageSend", messageRepository.findAllBySenderUserId(customUser.getUser().getId()));
+        return "message";
     }
 
     @GetMapping("/view/{id}")

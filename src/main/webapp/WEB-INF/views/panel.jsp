@@ -9,13 +9,13 @@
             <li><a href="<c:url value="/panel"/>">
                 <em class="fa fa-home"></em>
             </a></li>
-            <li class="active">Home</li>
+            <li class="active">Panel</li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Admin Panel</h1>
+            <h1 class="page-header">Panel</h1>
         </div>
     </div><!--/.row-->
 
@@ -24,7 +24,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-teal panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                        <div class="large">0</div>
+                        <div class="large">${numberOffers}</div>
                         <div class="text-muted">Twoje oferty</div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-blue panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-                        <div class="large">0</div>
+                        <div class="large">${numberOfMessages}</div>
                         <div class="text-muted">Wiadomosci</div>
                     </div>
                 </div>

@@ -2,11 +2,13 @@ package pl.project.instruktor.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Role;
 import pl.project.instruktor.model.User;
 import pl.project.instruktor.repository.RoleRepository;
 import pl.project.instruktor.repository.UserRepository;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -36,5 +38,21 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    @Override
+    public void updateUser(CurrentUser customUser, @Valid User user) {
+        User userToUpdate = userRepository.getOne(customUser.getUser().getId());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setPhoneNumber(user.getPhoneNumber());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setVideoLink(user.getVideoLink());
+        userToUpdate.setFacebookLink(user.getFacebookLink());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPassword(user.getPassword());
+        userRepository.save(userToUpdate);
+    }
+
+
 
 }
