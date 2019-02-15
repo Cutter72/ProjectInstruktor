@@ -25,7 +25,7 @@
         <li><a href="<c:url value="/panel/message"/>"><em class="fa fa-envelope">&nbsp;</em> Wiadomośći</a></li>
         <li><a href="<c:url value="/panel/user"/>"><em class="fa fa-user">&nbsp;</em> Profil</a></li>
         <li><a href="<c:url value="/panel/offer"/>"><em class="fa fa-product-hunt">&nbsp;</em> Oferty</a></li>
-        <li><a href="<c:url value="/panel/calendar"/>"><em class="fa fa-calendar">&nbsp;</em> Kalendarz</a></li>
+        <li><a href="<c:url value="/panel/schedule"/>"><em class="fa fa-calendar">&nbsp;</em> Kalendarz</a></li>
         <li><form action="/logout" method="post">
             <input class="fa fa-id-badge" type="submit" value="Wyloguj">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

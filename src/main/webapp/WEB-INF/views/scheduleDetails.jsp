@@ -125,7 +125,7 @@
                             class="fa fa-toggle-up"></em></span></div>
                 <div class="panel-body">
                     <fieldset>
-                        <form action="/availability/byday/add" method="post">
+                        <form:form method="post" action="/panel/availability/byday/add">
                             <table class="table-condensed">
                                 <c:forEach items="${dayList}" var="day">
                                     <tr>
@@ -157,7 +157,7 @@
                             <button class="btn btn-primary" type="submit">Ustal*</button>
                             <br/>
                             <p>* UWAGA! Ustalenie grafiku usunie wcześniejsze ustawienia!</p>
-                        </form>
+                        </form:form>
                     </fieldset>
                 </div>
             </div>

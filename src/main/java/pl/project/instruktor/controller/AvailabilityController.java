@@ -1,9 +1,11 @@
 package pl.project.instruktor.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.project.instruktor.model.Availability;
+import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Day;
 import pl.project.instruktor.repository.AvailabilityRepository;
 import pl.project.instruktor.repository.DayRepository;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/availability")
+@RequestMapping("/panel/availability")
 @Transactional
 public class AvailabilityController {
     private final DayRepository dayRepository;
@@ -41,7 +43,7 @@ public class AvailabilityController {
 
     @PostMapping("/byday/add")
     public String setAvailability(@RequestParam(defaultValue = "1") int expiration,
-                                  @RequestParam(defaultValue = "1") Long instructorId,
+                                  @AuthenticationPrincipal CurrentUser customUser,
                                   @RequestParam(defaultValue = "0") int pn,
                                   @RequestParam(defaultValue = "0") int wt,
                                   @RequestParam(defaultValue = "0") int sr,
@@ -69,17 +71,17 @@ public class AvailabilityController {
                 pnStartHour, wtStartHour, srStartHour, czStartHour, ptStartHour, soStartHour, ndStartHour,
                 pnEndHour, wtEndHour, srEndHour, czEndHour, ptEndHour, soEndHour, ndEndHour);
 
-        availabilityRepository.deleteAllByInstructorId(instructorId);
-        lessonRepository.deleteAllByInstructorId(instructorId);
+        availabilityRepository.deleteAllByInstructorId(customUser.getUser().getId());
+        lessonRepository.deleteAllByInstructorId(customUser.getUser().getId());
         for (Integer i = 0; i < weekSchedule.length; i++) {
             if (weekSchedule[i][0] > 0) {
                 for (Long j = 0L; j < expiration; j++) {
                     LocalDateTime startPeriodicity = availabilityService.createDayTime(weekSchedule[i][1],weekSchedule[i][0]).plusDays(j * 7);
                     LocalDateTime endPeriodicity = availabilityService.createDayTime(weekSchedule[i][2],weekSchedule[i][0]).plusDays(j * 7);
-                    Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, weekSchedule[i][0], instructorId);
+                    Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, weekSchedule[i][0], customUser.getUser().getId());
                     availabilityRepository.save(availabilityToAdd);
 
-                    availabilityService.generateLessons(weekSchedule[i][1],weekSchedule[i][2], instructorId,startPeriodicity,endPeriodicity);
+                    availabilityService.generateLessons(weekSchedule[i][1],weekSchedule[i][2], customUser.getUser().getId(),startPeriodicity,endPeriodicity);
                 }
             }
         }
