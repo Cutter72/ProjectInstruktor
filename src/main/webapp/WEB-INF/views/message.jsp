@@ -33,7 +33,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="pilltab1">
                         <section>
-                            <table border="black">
+                            <table class="table">
                                 <tr>
                                     <td>Od kogo</td>
                                     <td>Tytuł</td>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="tab-pane fade" id="pilltab2">
                         <section>
-                            <table border="black">
+                            <table class="table">
                                 <tr>
                                     <td>Do kogo</td>
                                     <td>Tytuł</td>
