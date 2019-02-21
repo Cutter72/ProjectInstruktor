@@ -23,5 +23,4 @@ public class Lesson {
     @OneToOne
     private Category category;
     private boolean reservation;
-
 }

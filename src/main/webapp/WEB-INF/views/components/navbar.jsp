@@ -13,7 +13,7 @@
             <a class="navbar-brand" href="<c:url value="/panel"/>"><span>Instruktor</span>Panel</a>
             <div class="navbar-nav nav-pills">
                 <ul class="nav navbar-top-links ">
-                    <li><a href="<c:url value="/home"/>">
+                    <li><a href="<c:url value="/"/>">
                         <span><strong>Strona główna</strong></span>
                     </a>
                     </li>

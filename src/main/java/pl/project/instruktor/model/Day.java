@@ -15,5 +15,4 @@ public class Day {
     private Long id;
     private String name;
     private String shortName;
-
 }

@@ -31,42 +31,31 @@ public class User {
     @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
     @NotBlank
     @Size(min = 2, max = 50)
     private String firstName;
     @NotBlank
     @Size(min = 2, max = 50)
     private String lastName;
-
+    private String description;
+    @NotBlank
+    @Email
+    private String email;
+    private Long phoneNumber;
+    private String videoLink;
+    private String facebookLink;
+    @OneToMany
+    private List<City> cities;
+    @OneToMany
+    private List<Opinion> opinions;
+    @OneToMany
+    private List<Offer> offers;
+    private LocalDateTime lastActivity;
     private LocalDateTime created;
 
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
     }
-
-    private LocalDateTime lastActivity;
-
-    private String description;
-
-    @NotBlank
-    @Email
-    private String email;
-
-    private Long phoneNumber;
-
-    private String videoLink;
-
-    private String facebookLink;
-
-    @OneToMany
-    private List<City> cities;
-
-    @OneToMany
-    private List<Opinion> opinions;
-
-    @OneToMany
-    private List<Offer> offers;
 
 }

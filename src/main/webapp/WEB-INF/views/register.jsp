@@ -26,10 +26,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="<c:url value="/home"/>"><span>E-</span>Instruktor</a>
+            <a class="navbar-brand" href="<c:url value="/"/>"><span>E-</span>Instruktor</a>
             <div class="navbar-nav nav-pills">
                 <ul class="nav navbar-top-links ">
-                    <li><a href="<c:url value="/home"/>">
+                    <li><a href="<c:url value="/"/>">
                         <span><strong>Strona główna</strong></span>
                     </a>
                     </li>

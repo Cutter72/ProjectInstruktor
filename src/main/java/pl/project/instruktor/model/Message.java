@@ -18,28 +18,21 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Size(max = 100)
+    @NotBlank
+    private String title;
+    @Size(max = 1000)
+    private String messageText;
+    @OneToOne
+    private User recipientUser;
+    @OneToOne
+    private User senderUser;
+    @ManyToOne
+    private Message parent;
     private LocalDateTime created;
 
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
     }
-
-    @Size(max = 100)
-    @NotBlank
-    private String title;
-
-    @Size(max = 1000)
-    private String messageText;
-
-    @OneToOne
-    private User recipientUser;
-
-    @OneToOne
-    private User senderUser;
-
-    @ManyToOne
-    private Message parent;
-
 }

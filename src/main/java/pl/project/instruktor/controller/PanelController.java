@@ -32,13 +32,13 @@ public class PanelController {
     }
 
     @ModelAttribute("currentUser")
-    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model){
+    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         User currentUser = userRepository.getOne(customUser.getUser().getId());
         model.addAttribute("currentUser", currentUser);
     }
 
     @RequestMapping("")
-    public String panel(@AuthenticationPrincipal CurrentUser customUser, Model model){
+    public String panel(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         List<Offer> allByUserId = offerRepository.getAllByUserId(customUser.getUser().getId());
         int size = allByUserId.size();
         model.addAttribute("numberOffers", size);
@@ -46,7 +46,6 @@ public class PanelController {
         List<Message> allByRecipientUserId = messageRepository.findAllByRecipientUserId(customUser.getUser().getId());
         int size1 = allByRecipientUserId.size();
         model.addAttribute("numberOfMessages", size1);
-
         return "panel";
     }
 

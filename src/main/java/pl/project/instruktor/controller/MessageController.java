@@ -12,9 +12,7 @@ import pl.project.instruktor.model.User;
 import pl.project.instruktor.repository.MessageRepository;
 import pl.project.instruktor.repository.UserRepository;
 
-
 import javax.validation.Valid;
-
 
 
 @Controller
@@ -31,7 +29,7 @@ public class MessageController {
     }
 
     @ModelAttribute("currentUser")
-    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model){
+    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         User currentUser = userRepository.getOne(customUser.getUser().getId());
         model.addAttribute("currentUser", currentUser);
     }
@@ -83,12 +81,12 @@ public class MessageController {
     }
 
     @GetMapping("/add")
-    public String messageAdd(@ModelAttribute Message message){
+    public String messageAdd(@ModelAttribute Message message) {
         return "messageAdd";
     }
 
     @PostMapping("/add")
-    public String messageSuccess(@Valid Message message, BindingResult result){
+    public String messageSuccess(@Valid Message message, BindingResult result) {
         if (result.hasErrors()) {
             return "message/messageAdd";
         }

@@ -1,32 +1,28 @@
 package pl.project.instruktor.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Offer;
 import pl.project.instruktor.model.User;
-import pl.project.instruktor.repository.CategoryRepository;
 import pl.project.instruktor.repository.OfferRepository;
 import pl.project.instruktor.repository.UserRepository;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
     private final OfferRepository offerRepository;
     private final UserRepository userRepository;
-    private final CategoryRepository categoryRepository;
 
-    public HomeController(OfferRepository offerRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
+
+    public HomeController(OfferRepository offerRepository, UserRepository userRepository) {
         this.offerRepository = offerRepository;
         this.userRepository = userRepository;
-        this.categoryRepository = categoryRepository;
     }
 
     @ModelAttribute("offers")
@@ -43,7 +39,7 @@ public class HomeController {
     }
 
     @GetMapping("")
-    public String home(Model model){
+    public String home(Model model) {
 
         return "home";
     }

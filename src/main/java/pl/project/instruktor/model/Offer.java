@@ -17,25 +17,18 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Double price;
-
     @Min(30)
     private int minutes;
-
     @NotBlank
     private String description;
-
     @NotBlank
     @Size(min = 2, max = 50)
     private String title;
-
     @OneToOne
     private User user;
-
     @OneToOne
     private Category category;
-
     private LocalDateTime created;
 
     @PrePersist

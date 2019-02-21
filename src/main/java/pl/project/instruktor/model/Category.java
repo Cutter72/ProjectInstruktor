@@ -11,16 +11,12 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Table(name = "categories")
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(length=100)
+    @Column(length = 100)
     @NotBlank
     private String name;
-
     @ManyToOne
     private Category parent;
-
 }

@@ -25,12 +25,12 @@ public class CityController {
     }
 
     @ModelAttribute("provinceList")
-    public List<Province> provinceList(){
+    public List<Province> provinceList() {
         return provinceRepository.findAll();
     }
 
     @GetMapping("/")
-    public String cityListSlash(Model model){
+    public String cityListSlash(Model model) {
         return "redirect:/panel/city";
     }
 
@@ -41,12 +41,12 @@ public class CityController {
     }
 
     @GetMapping("/add")
-    public String cityForm(@ModelAttribute City city){
+    public String cityForm(@ModelAttribute City city) {
         return "cityAdd";
     }
 
     @PostMapping("/add")
-    public String cityForm(@Valid City city, BindingResult result){
+    public String cityForm(@Valid City city, BindingResult result) {
         if (result.hasErrors()) {
             return "cityAdd";
         }

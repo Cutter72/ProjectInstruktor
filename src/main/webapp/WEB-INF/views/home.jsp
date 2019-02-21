@@ -12,10 +12,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="<c:url value="/home"/>"><span>E-</span>Instruktor</a>
+            <a class="navbar-brand" href="<c:url value="/"/>"><span>E-</span>Instruktor</a>
             <div class="navbar-nav nav-pills">
                 <ul class="nav navbar-top-links ">
-                    <li><a href="<c:url value="/home"/>">
+                    <li><a href="<c:url value="/"/>">
                         <span><strong>Strona główna</strong></span>
                     </a>
                     </li>
@@ -44,18 +44,19 @@
 <div class="col-lg-12">
     <div class="row">
         <ol class="breadcrumb">
-            <li><a href="<c:url value="/home"/>">
+            <li><a href="<c:url value="/"/>">
                 <em class="fa fa-home"></em>
             </a></li>
             <li class="active">Strona główna</li>
         </ol>
     </div><!--/.row-->
-
-    <div class="col-md-12 col-lg-offset-4">
-        <picture>
-            <img src="https://img.hopaj.pl/images/d/e/de63b0cc8f63b1c9ed856026133700e8.jpg" class="img-fluid"
-                 alt="Responsive image"/>
-        </picture>
+    <div class="panel panel-container">
+        <div class="row">
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <img src="http://sportpsychologytoday.com/wp-content/uploads/2010/11/Sportss.jpg"
+                     class="img-fluid" >
+            </div>
+        </div><!--/.row-->
     </div>
     <div class="panel panel-container">
         <div class="row">
@@ -112,7 +113,7 @@
                         <form method="post">
                             <div class="form-group">
                                 <div class="col-md-3 widget-right">
-                                    <a class="btn btn-md btn-primary" href="<c:url value="/home/offer/${offer.id}"/>">Szczegóły</a>
+                                    <a class="btn btn-md btn-primary" href="<c:url value="/offer/${offer.id}"/>">Szczegóły</a>
                                 </div>
                             </div>
                         </form>

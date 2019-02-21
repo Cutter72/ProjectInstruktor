@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.project.instruktor.model.CurrentUser;
-import pl.project.instruktor.model.Role;
 import pl.project.instruktor.model.User;
 import pl.project.instruktor.repository.UserRepository;
 import pl.project.instruktor.service.UserServiceImpl;
@@ -27,7 +26,7 @@ public class UserController {
     }
 
     @ModelAttribute("currentUser")
-    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model){
+    public void getCurrentUser(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         User currentUser = userRepository.getOne(customUser.getUser().getId());
         model.addAttribute("currentUser", currentUser);
     }

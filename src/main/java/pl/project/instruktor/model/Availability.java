@@ -20,6 +20,4 @@ public class Availability {
     private LocalDateTime endTime;
     @OneToOne
     private Day day;
-
-
 }

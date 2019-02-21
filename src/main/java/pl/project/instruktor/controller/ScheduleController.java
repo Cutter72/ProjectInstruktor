@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.project.instruktor.model.CurrentUser;
 import pl.project.instruktor.model.Day;
-import pl.project.instruktor.model.Lesson;
 import pl.project.instruktor.repository.DayRepository;
-import pl.project.instruktor.repository.LessonRepository;
 import pl.project.instruktor.service.LessonService;
-
 
 import java.time.Month;
 import java.util.Comparator;
@@ -23,24 +20,22 @@ import java.util.stream.Collectors;
 @RequestMapping("/panel/schedule")
 public class ScheduleController {
     private final DayRepository dayRepository;
-    private final LessonRepository lessonRepository;
     private final LessonService lessonService;
 
-    public ScheduleController(DayRepository dayRepository, LessonRepository lessonRepository, LessonService lessonService) {
+    public ScheduleController(DayRepository dayRepository, LessonService lessonService) {
         this.dayRepository = dayRepository;
-        this.lessonRepository = lessonRepository;
         this.lessonService = lessonService;
     }
 
     @GetMapping("")
-    public String home(Model model){
+    public String home(Model model) {
         List<Day> dayList = dayRepository.findAll().stream().sorted(Comparator.comparing(Day::getId)).collect(Collectors.toList());
         model.addAttribute("dayList", dayList);
         return "schedule";
     }
 
     @GetMapping("/{year}/{month}/{day}")
-    public String scheduleDetails(@PathVariable int year,@PathVariable String month,@PathVariable int day, Model model, @AuthenticationPrincipal CurrentUser customUser){
+    public String scheduleDetails(@PathVariable int year, @PathVariable String month, @PathVariable int day, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         List<Day> dayList = dayRepository.findAll().stream().sorted(Comparator.comparing(Day::getId)).collect(Collectors.toList());
         model.addAttribute("dayList", dayList);
 

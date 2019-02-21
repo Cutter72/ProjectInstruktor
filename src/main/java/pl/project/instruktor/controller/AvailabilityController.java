@@ -78,12 +78,12 @@ public class AvailabilityController {
         for (Integer i = 0; i < weekSchedule.length; i++) {
             if (weekSchedule[i][0] > 0) {
                 for (Long j = 0L; j < expiration; j++) {
-                    LocalDateTime startPeriodicity = availabilityService.createDayTime(weekSchedule[i][1],weekSchedule[i][0]).plusDays(j * 7);
-                    LocalDateTime endPeriodicity = availabilityService.createDayTime(weekSchedule[i][2],weekSchedule[i][0]).plusDays(j * 7);
+                    LocalDateTime startPeriodicity = availabilityService.createDayTime(weekSchedule[i][1], weekSchedule[i][0]).plusDays(j * 7);
+                    LocalDateTime endPeriodicity = availabilityService.createDayTime(weekSchedule[i][2], weekSchedule[i][0]).plusDays(j * 7);
                     Availability availabilityToAdd = availabilityService.createAvailability(startPeriodicity, endPeriodicity, weekSchedule[i][0], customUser.getUser().getId());
                     availabilityRepository.save(availabilityToAdd);
 
-                    availabilityService.generateLessons(weekSchedule[i][1],weekSchedule[i][2], customUser.getUser().getId(),startPeriodicity,endPeriodicity);
+                    availabilityService.generateLessons(weekSchedule[i][1], weekSchedule[i][2], customUser.getUser().getId(), startPeriodicity, endPeriodicity);
                 }
             }
         }

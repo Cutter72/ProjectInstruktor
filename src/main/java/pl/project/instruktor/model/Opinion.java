@@ -17,25 +17,19 @@ public class Opinion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Min(1)
+    @Max(5)
+    private Integer rating;
+    @Size(min = 15, max = 255)
+    private String opinionText;
+    @OneToOne
+    private User ratedUser;
+    @OneToOne
+    private User evaluatingUser;
     private LocalDateTime created;
 
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
     }
-
-    @Min(1)
-    @Max(5)
-    private Integer rating;
-
-    @Size(min = 15, max = 255)
-    private String opinionText;
-
-    @OneToOne
-    private User ratedUser;
-
-    @OneToOne
-    private User evaluatingUser;
-
 }

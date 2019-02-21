@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
     @Override
     public User findByUserName(String username) {
         return userRepository.findByUsername(username);
@@ -52,7 +53,6 @@ public class UserServiceImpl implements UserService {
         userToUpdate.setPassword(user.getPassword());
         userRepository.save(userToUpdate);
     }
-
 
 
 }
